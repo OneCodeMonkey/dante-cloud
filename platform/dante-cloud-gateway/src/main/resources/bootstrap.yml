@@ -105,10 +105,11 @@ spring:
     activate:
       on-profile: tencent
   cloud:
-    inetutils:
-      ignored-interfaces:
-        - eth0
+#    inetutils:
+#      ignored-interfaces:
+#        - eth0
     polaris:
+      enabled: true
       address: ${TENCENT_POLARIS_SERVER_ADDR:grpc://@tencent.polaris.server-addr@}
       namespace: ${TENCENT_POLARIS_NAMESPACE:@tencent.polaris.namespace@}
       config:
@@ -125,6 +126,14 @@ spring:
               - dante-cloud-redis.yaml
               - dante-cloud-rest.yaml
               - dante-cloud-cache.yaml
+
+logging:
+  file:
+    name: logs/${spring.application.name}.log
+  level:
+    root: INFO
+    # 开发、调试需要的日志
+    cn.herodotus: debug
 
 ---
 # spring 全家桶基础设施配置
