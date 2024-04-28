@@ -44,7 +44,7 @@ public class AuthorizationService implements RestApiTemplate {
 
     @Override
     public String getBaseUrl() {
-        return "http://192.168.101.10:8847/dante-cloud-uaa";
+        return "http://127.0.0.1:8847/dante-cloud-uaa";
     }
 
     public Map<String, Object> authorized(String code, String state) {
@@ -56,7 +56,7 @@ public class AuthorizationService implements RestApiTemplate {
                 .addHeader("Authorization", "Basic " + Base64.encode(clientDetails))
                 .addUrlPara("grant_type", "authorization_code")
                 .addUrlPara("code", code)
-                .addUrlPara("redirect_uri", "http://192.168.101.10:8847/dante-cloud-upms/open/authorized")
+                .addUrlPara("redirect_uri", "http://127.0.0.1:8847/dante-cloud-upms/open/authorized")
                 .post()
                 .getBody()
                 .toBean(new TypeRef<Map<String, Object>>() {
